@@ -55,3 +55,16 @@ install.packages("tidyverse")
 install.packages("gapminder")
 install.packages("openxlsx")
 install.packages("readr")
+library(tidyverse)
+library(readxl)
+x <- read.table("table_degenes.txt")
+sample_n(x, 5)
+
+gene <- read.table("table_degenes.txt")
+
+sample_n(gene,5)
+
+
+
+
+
