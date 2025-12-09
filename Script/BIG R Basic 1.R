@@ -2,6 +2,7 @@
 message <- "Hello World!"
 print(message)
 cat(message)
+message
 
 # R as a calculator
 2 + 2
