@@ -86,6 +86,7 @@ data |>
   ) |>
   add_p() |>
   bold_p(t = 0.05) |>
+  add_overall() |>
   as_gt() |>
   gtsave("qol_tables/Table3.docx")
 
