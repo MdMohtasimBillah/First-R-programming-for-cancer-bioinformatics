@@ -86,7 +86,9 @@ uv_tbl2 <- data |>
 tbl_merge(
   tbls = list(uv_tbl1, uv_tbl2),
   tab_spanner = c("**UV Linear Regression**", "**UV Logistic Regression**")
-)
+) |>
+  as_gt() |>
+  gtsave("Outcome/merged_UV_line_Logis.docx")
 
 
 
