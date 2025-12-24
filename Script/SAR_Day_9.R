@@ -208,8 +208,96 @@ loadfonts(device = "win")
 basic_plot + theme_bw(base_size = 11, base_family = "gochi")
 
 
+# Change font individually (title)
+basic_plot + theme(plot.title = element_text(size = 20, family = "gochi"))
+
+basic_plot + theme(plot.subtitle = element_text(size = 20, family = "gochi"))
+
+basic_plot + theme(axis.title = element_text(size = 20, family = "gochi"))
+
+basic_plot + theme(axis.title.x = element_text(size = 20, family = "gochi", face = "italic"))
+
+basic_plot + theme(plot.caption = element_text(size = 20, family = "gochi", face = "bold"))
 
 
 
+# legend position
+
+basic_plot + theme(legend.position = "left")
+
+basic_plot + theme(legend.position = "top")
+
+basic_plot + theme(legend.position = "bottom")
+
+basic_plot + theme(legend.title = element_text(size = 20))
+
+
+
+# reorder graph
+ggplot(data, aes(x = fct_infreq(Exercise), fill = Gender))+
+  geom_bar(position = "dodge")+
+  labs(
+    x = "Exercise Level",
+    y = "Counts"
+  )
+
+
+# Grid plot
+install.packages("cowplot")
+library(cowplot)
+
+p1 <- ggplot(data, aes(x = fct_infreq(Exercise), fill = Gender))+
+  geom_bar(position = "dodge")+
+  labs(
+    x = "Exercise Level",
+    y = "Counts"
+  ) + scale_fill_canva() +
+  theme_bw(base_size = 15) +
+  small_legend_theme
+
+
+
+p2 <- ggplot(data, aes(x = Exercise, fill = Gender))+
+  geom_bar(position = "dodge")+
+  labs(
+    x = "Exercise Level",
+    y = "Counts"
+  ) + scale_fill_lancet() +
+  theme_dark(base_size = 15) +
+  theme(
+  legend.key.size = unit(0.4, "cm"),      # Shrinks the colored boxes
+  legend.text = element_text(size = 8),    # Shrinks the font size of labels
+  legend.title = element_text(size = 9),   # Shrinks the font size of "Gender"
+  legend.spacing.x = unit(0.1, "cm")       # Tightens horizontal space
+)
+
+
+small_legend_theme <- theme(
+  legend.key.size = unit(0.4, "cm"),      # Shrinks the colored boxes
+  legend.text = element_text(size = 8),    # Shrinks the font size of labels
+  legend.title = element_text(size = 9),   # Shrinks the font size of "Gender"
+  legend.spacing.x = unit(0.1, "cm")       # Tightens horizontal space
+)
+
+
+plot_grid(p1, p2, labels = c("A", "B"))
+
+ggsave("Output/combined_plot.png", dpi = 300, width = 6, height = 2)
+
+
+#==============================
+
+# Pie chart
+
+data <- read.csv("Data/pulse_data.csv", stringsAsFactors = T)
+
+ggplot(data, aes(x = Gender))+
+  geom_bar()+
+  coord_polar()+
+  theme_void()
+
+ggplot(data, aes(x = factor(1), fill = Gender)) +
+  geom_bar(position = "fill")+
+  coord_polar("y")
 
 
