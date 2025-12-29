@@ -118,4 +118,7 @@ data |>
   summary() |>
   plot()
 
+install.packages("psych")
+
+how to calculate alpha in R.
 
